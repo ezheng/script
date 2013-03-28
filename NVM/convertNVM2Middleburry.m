@@ -1,18 +1,18 @@
-function convertNVM2Middleburry(nvmFileName, pcdbFileName, outputFileName)
-clc;
+function convertNVM2Middleburry(nvmFileName, outputFileName)
 
-nvmFileName = 'F:\Enliang\data\jared\soda_chocolate_data\model_clean.nvm';
-pcdbFileName = 'F:\Enliang\data\jared\soda_chocolate_data\pcdb.txt';
-outputFileName = 'soda_chocolate_data.txt';
+% nvmFileName = 'F:\Enliang\data\jared\soda_chocolate_data\model_clean.nvm';
+% outputFileName = 'soda_chocolate_data.txt';
 
 % ------------------------------------------------------------------
+[pathstr, name, ~] = fileparts(nvmFileName);
+pcdbFileName = fullfile(pathstr, 'pcdb.txt');
 
 [folderHierarchy, fileExt, filePath] = parsePCDB(pcdbFileName);
 if( strcmp(fileExt, '$'))
     fileExt = [];
 end
 
-[pathstr, name, ~] = fileparts(nvmFileName);
+
 if ~exist(fullfile(pathstr, [name, '.mat']), 'file')
     
     [camera, ~] = readNVM(nvmFileName);

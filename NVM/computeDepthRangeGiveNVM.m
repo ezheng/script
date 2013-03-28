@@ -1,15 +1,9 @@
-function computeDepthRangeGiveNVM(nvmFileName, middleburryFile)
+function computeDepthRangeGiveNVM(targetName, workingPath, middleburryFile)
 
-% nvmFileName = 'C:\Enliang\data\brandenburg\brandenburg_day_50.nvm';
-% middleburryFile = 'C:\Enliang\data\brandenburg\brandenburg_day_50.txt';
-% nvmFileName = 'C:\Enliang\data\san_marco_tower\san_marco_tower.nvm';
-% middleburryFile = 'C:\Enliang\data\san_marco_tower\san_marco_tower.txt';
-targetName = 'soda_chocolate_data';
-workingPath = 'F:\Enliang\data\jared\';
-% nvmFileName = 'C:\Enliang\data\saint_peter\saint_peter.nvm';
-% middleburryFile = 'C:\Enliang\data\saint_peter\saint_peter.txt';
-nvmFileName = fullfile( workingPath, targetName, [targetName, '.nvm']);
-middleburryFile = fullfile( workingPath, targetName, [targetName, '.txt']);
+% targetName = 'soda_chocolate_data';
+% workingPath = 'F:\Enliang\data\jared\soda_chocolate_data';
+nvmFileName = fullfile( workingPath,  [targetName, '.nvm']);
+% middleburryFile = fullfile( workingPath, [targetName, '.txt']);
 
 % ---------------------------------------------------------------
 [~, points3D] = readNVM(nvmFileName);
@@ -41,7 +35,7 @@ for i = 1: numel(points3D)
         end
     end    
 end
-save([targetName, '_Range.mat'], 'near_depth', 'far_depth')
+save(fullfile(workingPath, [targetName, '_Range.mat']), 'near_depth', 'far_depth')
 
 end
 
