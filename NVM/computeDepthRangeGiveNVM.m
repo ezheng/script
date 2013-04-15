@@ -10,10 +10,12 @@ nvmFileName = fullfile( workingPath,  [targetName, '.nvm']);
 camera = read_middleBurry(middleburryFile);
 
 numOfCams = numel(camera);
-far_depth = -ones(numOfCams, 1) * realmax('double');
-near_depth = ones(numOfCams, 1) * realmax('double');
+far_depth = ones(numOfCams, 1) ;
+near_depth = ones(numOfCams, 1) ;
 
-
+for i = 1:numOfCams
+   depth{i} =  [];
+end
 for i = 1: numel(points3D)    
     pt3d =  points3D(i).pos;
     
@@ -23,18 +25,26 @@ for i = 1: numel(points3D)
         cameraID = points3D(i).measure(j, 1);
         cameraID = cameraID + 1;
         
-        depth = calculateDepth(cameraID, camera, pt3d);
+        depth{cameraID} = [depth{cameraID}, calculateDepth(cameraID, camera, pt3d)];
         
-        if(~isempty(depth))
-            if(depth > far_depth(cameraID))
-                far_depth(cameraID) = depth;
-            end
-            if(depth < near_depth(cameraID))
-                near_depth(cameraID) = depth;
-            end
-        end
+%         if(~isempty(depth))
+%             if(depth > far_depth(cameraID))
+%                 far_depth(cameraID) = depth;
+%             end
+%             if(depth < near_depth(cameraID))
+%                 near_depth(cameraID) = depth;
+%             end
+%         end
     end    
 end
+
+for i = 1:numOfCams
+    oneCamDepth = sort(depth{i});
+    numOfPts = numel(oneCamDepth);
+    near_depth(i) = oneCamDepth(round(numOfPts*0.05));
+    far_depth(i) = oneCamDepth(round(numOfPts * 0.95));
+end
+
 save(fullfile(workingPath, [targetName, '_Range.mat']), 'near_depth', 'far_depth')
 
 end

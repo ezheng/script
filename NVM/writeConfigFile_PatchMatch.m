@@ -1,12 +1,12 @@
 function writeConfigFile_PatchMatch()
 %  you need to put images, nvm file and pcdb file in the folder
 
-workingPath = 'F:\Enliang\data\arc_paris';
-executable = 'F:\Enliang\cpp\patchMatch_CUDA\build_64_v10\Release\patchMatch.exe';
-taskName = 'arc_paris';
+workingPath = 'C:\Enliang\data\tower';
+taskName = 'tower';
+executable = 'C:\Enliang\data\executable\patchMatch.exe';
 numOfImagesUsed = [];
 halfWindowSize = 5;
-numOfSamples = 12;
+numOfSamples = 15;
 SPMAlpha = 0.6;
 numOfIterations = 3;
 % ------------------------------------------------------------------
@@ -82,13 +82,14 @@ fclose(fid_bat);
 end
 
 function [depth_near, depth_far] = rescaleDepth(depth_near_original, depth_far_original)
-    scaleOffset = 0.25;
-    depth_far = depth_far_original * (1 + scaleOffset);
-    depth_near = depth_near_original * (1 - scaleOffset);
+    scaleOffsetFar = 0.8;
+    depth_far = depth_far_original + (depth_far_original - depth_near_original) * scaleOffsetFar;
+    scaleOffset = 1.5;
+    depth_near = depth_near_original - (depth_far_original - depth_near_original) * scaleOffset;
     
     while(depth_near <= 0)
        scaleOffset = scaleOffset / 1.1; 
-        depth_near = depth_near_original * (1 - scaleOffset);
+        depth_near = depth_near_original - (depth_far_original - depth_near_original) * scaleOffset;
     end
 end
 
