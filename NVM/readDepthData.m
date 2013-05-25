@@ -1,5 +1,5 @@
 function readDepthData()
-workingPath = 'C:\Enliang\data\brandenbur_larger';
+workingPath = 'C:\Enliang\data\liberty\';
 
 addpath('C:\Enliang\library_64\export_fig\');
 inputFileRoot = fullfile(workingPath, 'results');
@@ -20,9 +20,11 @@ for i = 1:numOfImages
 %     data = data';
     data = loadFLTFile(fileName);
     % -------------------------
-    figure(1); imagesc(data); axis equal;colorbar;
+    h = figure(1); imagesc(data); axis equal;colorbar;
+%     set(h,'position', [260, 228, 768,768 ])
+    
     zoom(2);
-    zoom(0.5);
+     zoom(0.5);
     outputFileName = fullfile(outputFileRoot, ['depthMap', sprintf('%.3d',i-1),'.pdf']);
     export_fig(outputFileName);
     close 1;

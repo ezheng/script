@@ -1,11 +1,11 @@
 function writeConfigFile_PatchMatch()
 %  you need to put images, nvm file and pcdb file in the folder
 
-workingPath = 'C:\Enliang\data\tower';
-taskName = 'tower';
+workingPath = 'C:\Enliang\data\liberty';
+taskName = 'liberty';
 executable = 'C:\Enliang\data\executable\patchMatch.exe';
 numOfImagesUsed = [];
-halfWindowSize = 5;
+halfWindowSize = 4;
 numOfSamples = 15;
 SPMAlpha = 0.6;
 numOfIterations = 3;
