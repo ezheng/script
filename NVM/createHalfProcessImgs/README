@@ -1,0 +1,4 @@
+% the code generates the images for each step in the patchMatch sweep
+% the input is the *.txt depth files in the folder %workngPath%/rawData/
+
+
