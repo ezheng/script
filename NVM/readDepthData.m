@@ -1,5 +1,5 @@
 function readDepthData()
-workingPath = 'C:\Enliang\data\liberty\';
+workingPath = 'C:\Enliang\data\randObject_less\';
 
 addpath('C:\Enliang\library_64\export_fig\');
 inputFileRoot = fullfile(workingPath, 'results');
