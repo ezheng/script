@@ -1,4 +1,4 @@
-function convertNVM2Middleburry(nvmFileName, outputFileName)
+function camera = convertNVM2Middleburry(nvmFileName, outputFileName)
 
 % nvmFileName = 'F:\Enliang\data\jared\soda_chocolate_data\model_clean.nvm';
 % outputFileName = 'soda_chocolate_data.txt';
