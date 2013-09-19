@@ -23,14 +23,14 @@ if(~exist(fullfile(workingPath, [taskName, '_allImgs.txt']), 'file'))
     end
     
     for i = 1:numel(camera)
-        startId = (i-7);
+        startId = (i-9);
         if(startId <= 0)
             startId = 1;
         end
-        endId = startId + 14;
+        endId = startId + 18;
         if(endId > numel(camera))
             endId = numel(camera);
-            startId = endId - 14;
+            startId = endId - 18;
         end
         idx = [i, startId:(i-1), (i+1):endId];        
         outputFileName = fullfile( middleBurryFilePath, [ taskName, sprintf('_%.4d', i-1), '.txt']);        
@@ -107,9 +107,9 @@ fclose(fid_bat);
 end
 
 function [depth_near, depth_far] = rescaleDepth(depth_near_original, depth_far_original)
-    scaleOffsetFar = 0.8;
+    scaleOffsetFar = 2.5;
     depth_far = depth_far_original + (depth_far_original - depth_near_original) * scaleOffsetFar;
-    scaleOffset = 1.5;
+    scaleOffset = 2.0;
     depth_near = depth_near_original - (depth_far_original - depth_near_original) * scaleOffset;
     
     while(depth_near <= 0)
