@@ -1,12 +1,15 @@
-function resizeImgs
+function resizeImgs(workingDir, maxDim)
 
-workingDir = 'C:\Enliang\data\coliseum2';
+if(nargin == 1)   
+    maxDim = 2048;
+end
+
+% workingDir = 'C:\Enliang\data\coliseum2';
 origDir = fullfile(workingDir, 'OrignalImage');
 outputDir = fullfile(workingDir, 'image');
 if ~exist(outputDir, 'dir')
     mkdir(outputDir);
 end
-maxDim = 1024;
 
 allFiles = dir( fullfile(origDir, '*.jpg'));
 numOfFiles = numel(allFiles);
@@ -25,8 +28,6 @@ end
 end
 
 
-
-
 function resultedImg = resizeImg(img, maxDim)
     height = size(img,1);
     width = size(img,2);
@@ -38,6 +39,3 @@ function resultedImg = resizeImg(img, maxDim)
     end
     resultedImg = imresize(img, sz);
 end
-
-
-
