@@ -2,7 +2,7 @@ function batchVisualizeDepthFile(workingPath)
 
 %workingPath = 'C:\Enliang\data\randObject_less\';
 
-addpath('F:\Enliang\library_64\export_fig\');
+addpath('C:\Enliang\library_64\export_fig\');
 inputFileRoot = fullfile(workingPath, 'results');
 outputFileRoot = fullfile(workingPath, 'imageResults\');
 % ===========================================================
@@ -26,7 +26,10 @@ for i = 1:numOfImages
     
     zoom(2);
     zoom(0.5);
-    outputFileName = fullfile(outputFileRoot, ['depthMap', sprintf('%.3d',i-1),'.pdf']);
+    
+    [~,name,~] = fileparts(fileName);
+    
+    outputFileName = fullfile(outputFileRoot, [name,'.pdf']);
     export_fig(outputFileName);
     close 1;
 end

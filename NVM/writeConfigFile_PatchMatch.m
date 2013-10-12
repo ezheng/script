@@ -1,13 +1,13 @@
 function writeConfigFile_PatchMatch()
 %  you need to put images, nvm file and pcdb file in the folder
 
-workingPath = 'C:\Enliang\data\randObject_less';
-taskName = 'randObject_less';
+workingPath = 'C:\Enliang\data\mixed';
+taskName = 'mixed';
 executable = 'C:\Enliang\data\executable\patchMatch.exe';
 numOfImagesUsed = [];
-halfWindowSize = 8;
-numOfSamples = 15;
-SPMAlpha = 0.6;
+halfWindowSize = 3;
+numOfSamples = 10;
+SPMAlpha = 0.65;
 numOfIterations = 3;
 % ------------------------------------------------------------------
 middleburyFullFileName = fullfile(workingPath, [taskName, '.txt']);
