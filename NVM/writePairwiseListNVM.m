@@ -1,11 +1,14 @@
 function writePairwiseListNVM()
 
 
-workingDir = 'F:\Enliang\temp\trajectories\data\jared\MVI_2171';
+workingDir = 'F:\Enliang\data\church_Spilled_Blood\subsetImages';
 
 % -------------------------------------------------------------
 
-allImages = dir(fullfile(workingDir, '*.ppm'));
+allImages = dir(fullfile(workingDir, '*.jpg'));
+
+id = randperm(numel(allImages));
+allImages = allImages(id);
 
 fileListName = fullfile( workingDir, 'list.txt');
 fid = fopen(fileListName, 'w');
