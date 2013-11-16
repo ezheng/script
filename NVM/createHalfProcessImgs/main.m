@@ -3,8 +3,10 @@ function main()
 % this script generates the images for each step in the patchMatch sweep
 % the input is the *.txt depth files in the folder %workngPath%/rawData/
 
-workingPath = 'C:\Enliang\matlab\script\NVM\createHalfProcessImgs\brandenburg\';
-
+workingPath = 'C:\Enliang\matlab\script\NVM\createHalfProcessImgs\greatBuddha2\';
+% colorRange = [35,48];
+% colorRange = [4.790 ,9.6567];
+colorRange = [5.5, 7.5];
 
 % ----------------------------------------------------------------
 outputPath = fullfile(workingPath, 'output');
@@ -32,40 +34,55 @@ for i = 1:numOfIterations
     if( mod(i,4) == 1)
         for j = 1:10: width            
             newImg = [dataLater(:,1:j), dataFormer(:,j+1:end)];
-            h =figure(1); imagesc(newImg);
-             set(h,'position', [260, 228, 768,768 ]);
-            axis equal; colorbar;
-            zoom(2); zoom(0.5);            
-            export_fig(fullfile(outputPath_sub, ['iter', sprintf('%02d',i),'_', sprintf('%04d',j),'.jpg']));
+            newImg(:,j) = zeros( size(newImg,1), 1);
+           outputFileName = fullfile(outputPath_sub, ['iter', sprintf('%02d',i),'_', sprintf('%04d',j),'.png']);
+           plotFullScreen(newImg, outputFileName,colorRange);
         end
     elseif( mod(i,4) == 2)
         for j = 1:10: height            
 %             newImg = [dataLater(:,1:j), dataFormer(:,j+1:end)];
             newImg = [dataLater(1:j, :); dataFormer(j+1:end,:)];
-            h = figure(1); imagesc(newImg);
-             set(h,'position', [260, 228, 768,768 ]);
-            axis equal; colorbar;
-            zoom(2); zoom(0.5);            
-            export_fig(fullfile(outputPath_sub, ['iter', sprintf('%02d',i),'_', sprintf('%04d',j),'.jpg']));
+            newImg(j,:) = zeros(1, size(newImg, 2));
+            outputFileName = fullfile(outputPath_sub, ['iter', sprintf('%02d',i),'_', sprintf('%04d',j),'.png']);      
+            plotFullScreen(newImg, outputFileName,colorRange);
         end
     elseif (mod(i,4) == 3)
 %         for j = 1:10: width            
          for j = width : -10:1
-            newImg = [dataFormer(:,1:j-1), dataLater(:,j:end)];            
-            h = figure(1); imagesc(newImg);
-             set(h,'position', [260, 228, 768,768 ]);
-            axis equal; colorbar;
-            zoom(2); zoom(0.5);            
-            export_fig(fullfile(outputPath_sub, ['iter', sprintf('%02d',i),'_', sprintf('%04d',width - j + 1),'.jpg']));
+            newImg = [dataFormer(:,1:j-1), dataLater(:,j:end)];
+            newImg(:,j) = zeros( size(newImg,1), 1);
+            outputFileName = fullfile(outputPath_sub, ['iter', sprintf('%02d',i),'_', sprintf('%04d',width - j + 1),'.png']);
+            plotFullScreen(newImg, outputFileName,colorRange);            
         end
     else    
          for j = height : -10:1           
             newImg = [dataFormer(1:j-1, :); dataLater(j:end,:)];
-            h = figure(1); imagesc(newImg);
-             set(h,'position', [260, 228, 768,768 ]);
-            axis equal; colorbar;
-            zoom(2); zoom(0.5);            
-            export_fig(fullfile(outputPath_sub, ['iter', sprintf('%02d',i),'_', sprintf('%04d',height - j + 1),'.jpg']));
+             newImg(j,:) = zeros(1, size(newImg, 2));
+            outputFileName = fullfile(outputPath_sub, ['iter', sprintf('%02d',i),'_', sprintf('%04d',height - j + 1),'.png']);
+            plotFullScreen(newImg, outputFileName,colorRange);
         end
     end
 end
+
+end
+
+function plotFullScreen(newImg, outputFileName, colorRange)
+
+
+h =figure(1);
+%              set(h,'position', [260, 228, 768,768 ]);
+set(h,'Units', 'Normalized', 'OuterPosition', [0 0 1 1]);
+imagesc(newImg, colorRange);
+axis equal; colorbar;
+zoom(2); zoom(0.5); set(h, 'color', 'w');
+export_fig( outputFileName);
+end
+
+
+
+
+
+
+
+
+
