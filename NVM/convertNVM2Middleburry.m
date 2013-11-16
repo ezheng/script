@@ -1,4 +1,4 @@
-function camera = convertNVM2Middleburry(nvmFileName, outputFileName)
+function [camera, points3D] = convertNVM2Middleburry(nvmFileName, outputFileName)
 
 % nvmFileName = 'F:\Enliang\data\jared\soda_chocolate_data\model_clean.nvm';
 % outputFileName = 'soda_chocolate_data.txt';
@@ -15,7 +15,7 @@ end
 
 if ~exist(fullfile(pathstr, [name, '.mat']), 'file')
     
-    [camera, ~] = readNVM(nvmFileName);
+    [camera, points3D] = readNVM(nvmFileName);
     % change the 'name' in 'camera' to full file path
     for i = 1:numel(camera)
         %     i
