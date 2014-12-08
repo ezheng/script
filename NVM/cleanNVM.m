@@ -1,6 +1,6 @@
 function cleanNVM(nvmFileName)
 fclose all;
-nvmFileName = 'F:\Enliang\matlab\GMST_subprob\gmst\realData\halfcircle\image\halfcircle.nvm';
+nvmFileName = 'F:\Enliang\matlab\GMST_subprob\gmst\realData\halfcircle_jared\image\halfcircle_jared.nvm';
 
 % [camera, points3D] = readNVM(nvmFileName);
 [path, name, ext] = fileparts(nvmFileName);
