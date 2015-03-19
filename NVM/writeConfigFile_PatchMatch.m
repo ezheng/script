@@ -1,12 +1,12 @@
 function writeConfigFile_PatchMatch()
 %  you need to put images, nvm file and pcdb file in the folder
 
-workingPath = 'C:\Enliang\data\fountain_trevi';
-taskName = 'fountain_trevi';
-executable = 'C:\Enliang\data\executable\patchMatch.exe';
+workingPath = 'F:\Enliang\data\germany2';
+taskName = 'germany2';
+executable = 'F:\Enliang\cpp\patchMatch_CUDA\build_64_VS2013\Release\patchMatch.exe';
 numOfImagesUsed = [];
 halfWindowSize = 3;
-numOfSamples = 10;
+numOfSamples = 20;
 SPMAlpha = 0.5;
 numOfIterations = 3;
 isGenerateDepthMapInitFile = true;

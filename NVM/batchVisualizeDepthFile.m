@@ -2,7 +2,7 @@ function batchVisualizeDepthFile(workingPath)
 
 %workingPath = 'C:\Enliang\data\randObject_less\';
 
-addpath('C:\Enliang\library_64\export_fig\');
+addpath('F:\Enliang\library_64\export_fig\');
 inputFileRoot = fullfile(workingPath, 'results');
 outputFileRoot = fullfile(workingPath, 'imageResults\');
 % ===========================================================
